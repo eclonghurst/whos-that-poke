@@ -1,11 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "../CSS/PokeImage.css";
-
-type PokeImageProps = {
-  pokemonImage: string;
-  loading: boolean;
-};
+import { PokeImageProps } from "../Types";
 
 function PokeImage({ pokemonImage, loading }: PokeImageProps) {
   return (

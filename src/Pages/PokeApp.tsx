@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { PokemonClient } from "pokenode-ts";
 import PokeImage from "../Components/PokeImage";
 import GuessBar from "../Components/GuessBar";
+import { Pokemon } from "../Types";
 
 function PokeApp() {
   // strongly typed state
-  const [pokemonName, setPokemonName] = useState<string>("");
+  const [pokemon, setPokemon] = useState<Pokemon>({});
   const [pokemonImage, setPokemonImage] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -13,7 +14,8 @@ function PokeApp() {
     const api = new PokemonClient();
     const randomIndex = Math.floor(Math.random() * 898) + 1; // 1 to 898
     const data = await api.getPokemonById(randomIndex);
-    setPokemonName(data.name);
+    setPokemon(data);
+    console.log(pokemon);
     console.log(`Fetching Pokémon at index ${randomIndex}: ${data.name}`);
     return data.id;
   };
@@ -29,8 +31,8 @@ function PokeApp() {
     if (data.sprites.front_default) {
       // type of pokemonImage is default string so will not accept a null value - this assigns an empty string if null
       setPokemonImage(data.sprites.front_default || "");
+      setPokemon(data);
       setLoading(false);
-      console.log(data.name);
     } else {
       console.log("sprite missing for ${randomPokemonName}. Retrying");
       return await fetchPokemonImage(retryCount - 1);
@@ -45,7 +47,7 @@ function PokeApp() {
     <>
       <h1>Who's that Pokemon?</h1>
       <PokeImage pokemonImage={pokemonImage} loading={loading} />
-      <GuessBar pokemonName={pokemonName} onCorrectGuess={fetchPokemonImage} />
+      <GuessBar pokemon={pokemon} onCorrectGuess={fetchPokemonImage} />
     </>
   );
 }

@@ -1,11 +1,10 @@
-import { func } from "prop-types";
 import React, { useState } from "react";
-
+import { Pokemon } from "../Types";
 function GuessBar({
-  pokemonName,
+  pokemon,
   onCorrectGuess,
 }: {
-  pokemonName: string;
+  pokemon: Pokemon;
   onCorrectGuess: () => void;
 }) {
   const [guess, setGuess] = useState<string>("");
@@ -16,7 +15,7 @@ function GuessBar({
 
   function handleGuess(guess: string) {
     console.log("The user guessed: " + guess);
-    if (guess.toLowerCase() === pokemonName.toLowerCase()) {
+    if (guess.toLowerCase() === pokemon.name?.toLowerCase()) {
       console.log("you won");
       onCorrectGuess();
       setGuess("");
