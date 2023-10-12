@@ -1,3 +1,75 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
 .pokeimage {
   filter: brightness(0);
+}
+.pokedex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 300px;
+  background-color: rgb(255, 126, 126);
+  border-radius: 20px;
+}
+.pokeimage-container {
+  display: flex;
+  justify-content: center;
+  width: 400px;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.guessbar-container {
+  margin: 20px;
+}
+
+.guess-input {
+  background-color: rgb(255, 216, 216);
+  border: none;
+  border-radius: 5px;
+  height: 48px;
+}
+
+.guess-button {
+  margin: 10px;
+  align-items: center;
+  appearance: none;
+  background-color: #fcfcfd;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow: rgba(203, 74, 74, 0.4) 0 2px 4px,
+    rgba(144, 76, 76, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #c26565;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono", monospace;
+  height: 48px;
+  justify-content: center;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow 0.15s, transform 0.15s;
+  will-change: box-shadow, transform;
+  font-size: 14px;
+}
+.guess-button:focus {
+  box-shadow: #d6d6e7 0 0 0 1.5px inset, rgba(184, 95, 95, 0.4) 0 2px 4px,
+    rgba(211, 70, 70, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+}
+.guess-button:hover {
+  box-shadow: rgba(186, 103, 103, 0.4) 0 4px 8px,
+    rgba(182, 102, 102, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+.guess-button:active {
+  box-shadow: #ffc9c9 0 3px 7px inset;
+  transform: translateY(2px);
 }
