@@ -19,6 +19,7 @@ function GuessBar({
     if (guess.toLowerCase() === pokemonName.toLowerCase()) {
       console.log("you won");
       onCorrectGuess();
+      setGuess("");
     } else {
       console.log("incorrect");
     }
