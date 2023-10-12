@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Pokemon } from "../Types";
+
 function GuessBar({
   pokemon,
   onCorrectGuess,
@@ -8,7 +9,6 @@ function GuessBar({
   onCorrectGuess: () => void;
 }) {
   const [guess, setGuess] = useState<string>("");
-
   function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
     setGuess(event.target.value);
   }

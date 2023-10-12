@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "../CSS/PokeImage.css";
 import { PokeImageProps } from "../Types";
+import pokeball from "../pokeball.gif";
 
 function PokeImage({ pokemonImage, loading }: PokeImageProps) {
   return (
@@ -9,7 +10,7 @@ function PokeImage({ pokemonImage, loading }: PokeImageProps) {
       <div className="pokedex">
         <div className="pokeimage-container">
           {loading ? (
-            <p>Loading ...</p>
+            <img src={pokeball} alt="" width={"200px"} />
           ) : (
             <img
               className="pokeimage"
