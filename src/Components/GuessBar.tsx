@@ -56,6 +56,7 @@ function GuessBar({
         setHasLost(true);
         setLives(2);
         setTimeout(() => onCorrectGuess(), 2000);
+        setGuess("");
       }
       console.log("incorrect");
     }
