@@ -60,7 +60,6 @@ function PokeApp() {
         onCorrectGuess={fetchPokemonImage}
         hasLost={hasLost}
         setHasLost={setHasLost}
-        brightness={brightness}
         setBrightness={setBrightness}
       />
     </>
