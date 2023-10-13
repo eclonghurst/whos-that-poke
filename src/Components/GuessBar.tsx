@@ -54,7 +54,7 @@ function GuessBar({
       setLives(2);
       setStreak(streak + 1);
       setBrightness(1);
-      setTimeout(() => onCorrectGuess(), 1000);
+      setTimeout(() => onCorrectGuess(), 2000);
       setGuess("");
     } else {
       setLives(lives - 1);
