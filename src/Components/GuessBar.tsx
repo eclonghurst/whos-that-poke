@@ -4,13 +4,17 @@ import { Pokemon } from "../Types";
 function GuessBar({
   pokemon,
   onCorrectGuess,
+  hasLost,
+  setHasLost,
 }: {
   pokemon: Pokemon;
   onCorrectGuess: () => void;
+  hasLost: boolean;
+  setHasLost: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [guess, setGuess] = useState<string>("");
   const [hasWon, setHasWon] = useState<boolean>(false);
-  const [lives, setLives] = useState<number>(3);
+  const [lives, setLives] = useState<number>(2);
   const [streak, setStreak] = useState<number>(0);
 
   useEffect(() => {
@@ -41,7 +45,7 @@ function GuessBar({
     ) {
       console.log("you won");
       setHasWon(true);
-      setLives(3);
+      setLives(2);
       setStreak(streak + 1);
       onCorrectGuess();
       setGuess("");
@@ -49,6 +53,9 @@ function GuessBar({
       setLives(lives - 1);
       if (lives === 0) {
         setStreak(0);
+        setHasLost(true);
+        setLives(2);
+        setTimeout(() => onCorrectGuess(), 2000);
       }
       console.log("incorrect");
     }
@@ -67,10 +74,11 @@ function GuessBar({
         <button className="guess-button" onClick={() => handleGuess(guess)}>
           Guess
         </button>
-        <h4>Guesses remaining: {lives}</h4>
+        <h4>Guesses remaining: {lives + 1}</h4>
         <h5>Current streak: {streak}</h5>
       </div>
       {hasWon && <h2>You got it!</h2>}
+      {hasLost && <h2>The answer was: {pokemon.name}</h2>}
     </>
   );
 }

@@ -9,6 +9,7 @@ function PokeApp() {
   const [pokemon, setPokemon] = useState<Pokemon>({});
   const [pokemonImage, setPokemonImage] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
+  const [hasLost, setHasLost] = useState<boolean>(false);
 
   const getRandomPokemon = async () => {
     const api = new PokemonClient();
@@ -26,6 +27,7 @@ function PokeApp() {
     if (retryCount <= 0) {
       throw new Error("Too many attempts");
     }
+    setHasLost(false);
     const api = new PokemonClient();
     const data = await api.getPokemonById(await getRandomPokemon());
     if (data.sprites.front_default) {
@@ -34,7 +36,7 @@ function PokeApp() {
       setPokemon(data);
       setLoading(false);
     } else {
-      console.log("sprite missing for ${randomPokemonName}. Retrying");
+      console.log(`sprite missing for $randomPokemonName. Retrying`);
       return await fetchPokemonImage(retryCount - 1);
     }
   };
@@ -47,7 +49,12 @@ function PokeApp() {
     <>
       <h1>Who's that Pokemon?</h1>
       <PokeImage pokemonImage={pokemonImage} loading={loading} />
-      <GuessBar pokemon={pokemon} onCorrectGuess={fetchPokemonImage} />
+      <GuessBar
+        pokemon={pokemon}
+        onCorrectGuess={fetchPokemonImage}
+        hasLost={hasLost}
+        setHasLost={setHasLost}
+      />
     </>
   );
 }
