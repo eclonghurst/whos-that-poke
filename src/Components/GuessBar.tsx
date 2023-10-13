@@ -10,6 +10,7 @@ function GuessBar({
 }) {
   const [guess, setGuess] = useState<string>("");
   const [hasWon, setHasWon] = useState<boolean>(false);
+  const [lives, setLives] = useState<number>(5);
 
   useEffect(() => {
     let timerId: NodeJS.Timeout;
@@ -36,9 +37,11 @@ function GuessBar({
     if (guess.toLowerCase() === pokemon.name?.toLowerCase()) {
       console.log("you won");
       setHasWon(true);
+      setLives(5);
       onCorrectGuess();
       setGuess("");
     } else {
+      setLives(lives - 1);
       console.log("incorrect");
     }
     return guess;
@@ -56,6 +59,7 @@ function GuessBar({
         <button className="guess-button" onClick={() => handleGuess(guess)}>
           Guess
         </button>
+        <h5>Guesses remaining: {lives}</h5>
       </div>
       {hasWon && <h2>You got it!</h2>}
     </>
