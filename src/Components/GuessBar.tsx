@@ -47,6 +47,9 @@ function GuessBar({
       setGuess("");
     } else {
       setLives(lives - 1);
+      if (lives === 0) {
+        setStreak(0);
+      }
       console.log("incorrect");
     }
     return guess;
