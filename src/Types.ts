@@ -5,4 +5,5 @@ export type Pokemon = {
 export type PokeImageProps = {
   pokemonImage: string;
   loading: boolean;
+  brightness: number;
 };

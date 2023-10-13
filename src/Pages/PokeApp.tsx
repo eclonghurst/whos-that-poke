@@ -10,6 +10,7 @@ function PokeApp() {
   const [pokemonImage, setPokemonImage] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
   const [hasLost, setHasLost] = useState<boolean>(false);
+  const [brightness, setBrightness] = useState<number>(0);
 
   const getRandomPokemon = async () => {
     const api = new PokemonClient();
@@ -32,6 +33,7 @@ function PokeApp() {
     const data = await api.getPokemonById(await getRandomPokemon());
     if (data.sprites.front_default) {
       // type of pokemonImage is default string so will not accept a null value - this assigns an empty string if null
+      setBrightness(0);
       setPokemonImage(data.sprites.front_default || "");
       setPokemon(data);
       setLoading(false);
@@ -48,12 +50,18 @@ function PokeApp() {
   return (
     <>
       <h1>Who's that Pokemon?</h1>
-      <PokeImage pokemonImage={pokemonImage} loading={loading} />
+      <PokeImage
+        pokemonImage={pokemonImage}
+        loading={loading}
+        brightness={brightness}
+      />
       <GuessBar
         pokemon={pokemon}
         onCorrectGuess={fetchPokemonImage}
         hasLost={hasLost}
         setHasLost={setHasLost}
+        brightness={brightness}
+        setBrightness={setBrightness}
       />
     </>
   );

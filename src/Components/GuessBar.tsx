@@ -6,11 +6,15 @@ function GuessBar({
   onCorrectGuess,
   hasLost,
   setHasLost,
+  brightness,
+  setBrightness,
 }: {
   pokemon: Pokemon;
   onCorrectGuess: () => void;
   hasLost: boolean;
   setHasLost: React.Dispatch<React.SetStateAction<boolean>>;
+  brightness: number;
+  setBrightness: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const [guess, setGuess] = useState<string>("");
   const [hasWon, setHasWon] = useState<boolean>(false);
@@ -55,6 +59,7 @@ function GuessBar({
         setStreak(0);
         setHasLost(true);
         setLives(2);
+        setBrightness(1);
         setTimeout(() => onCorrectGuess(), 2000);
         setGuess("");
       }
