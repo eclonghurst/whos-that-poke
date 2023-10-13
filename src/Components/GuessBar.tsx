@@ -20,6 +20,7 @@ function GuessBar({
   const [hasWon, setHasWon] = useState<boolean>(false);
   const [lives, setLives] = useState<number>(2);
   const [streak, setStreak] = useState<number>(0);
+  let stringSimilarity = require("string-similarity");
 
   useEffect(() => {
     let timerId: NodeJS.Timeout;
@@ -42,8 +43,13 @@ function GuessBar({
   }
 
   function handleGuess(guess: string) {
+    const similarity = stringSimilarity.compareTwoStrings(
+      guess.toLowerCase(),
+      pokemon.name?.toLowerCase() || ""
+    );
     console.log("The user guessed: " + guess);
     if (
+      similarity > 0.7 ||
       guess.toLowerCase() === pokemon.name?.toLowerCase() ||
       guess.toLowerCase() === pokemon.name?.split("-")[0].toLowerCase()
     ) {
