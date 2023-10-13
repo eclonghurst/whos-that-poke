@@ -10,7 +10,7 @@ function PokeImage({ pokemonImage, loading, brightness }: PokeImageProps) {
       <div className="pokedex">
         <div className="pokeimage-container">
           {loading ? (
-            <img src={pokeball} alt="" width={"200px"} style={{}} />
+            <img src={pokeball} alt="" width={"200px"} />
           ) : (
             <img
               className="pokeimage"

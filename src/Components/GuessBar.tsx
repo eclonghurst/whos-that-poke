@@ -27,7 +27,7 @@ function GuessBar({
     if (hasWon) {
       timerId = setTimeout(() => {
         setHasWon(false);
-      }, 1000);
+      }, 2000);
     }
     // Clean up timeout if component is unmounted before timeout is reached
     return () => {
@@ -49,9 +49,12 @@ function GuessBar({
     ) {
       console.log("you won");
       setHasWon(true);
+      // shows the answer
+      setHasLost(true);
       setLives(2);
       setStreak(streak + 1);
-      onCorrectGuess();
+      setBrightness(1);
+      setTimeout(() => onCorrectGuess(), 1000);
       setGuess("");
     } else {
       setLives(lives - 1);

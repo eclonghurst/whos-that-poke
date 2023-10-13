@@ -33,10 +33,10 @@ function PokeApp() {
     const data = await api.getPokemonById(await getRandomPokemon());
     if (data.sprites.front_default) {
       // type of pokemonImage is default string so will not accept a null value - this assigns an empty string if null
-      setBrightness(0);
       setPokemonImage(data.sprites.front_default || "");
       setPokemon(data);
       setLoading(false);
+      setBrightness(0);
     } else {
       console.log(`sprite missing for $randomPokemonName. Retrying`);
       return await fetchPokemonImage(retryCount - 1);
